@@ -1,0 +1,109 @@
+<!Doctype html>
+<html>
+  <head>
+    <title>Positions</title>
+    <style>
+      .pos1 {
+        border: 2px solid red;
+        position: static; // default value if position is not specified.
+      }
+      .pos2 {
+        border: 2px solid blue;
+        position: relative;
+        left: 20px;
+      }
+      .pos2a {
+        border: 2px solid green;
+        position: relative;
+        top: 10px;
+        left: 20px;
+        width: 200px;
+        height: 40px;
+      }
+      .pos3 {
+        position: fixed;
+        border: 2px solid black;
+        background: grey;
+        right: 0;
+        height: 33px;
+        bottom: 0;
+        width: 100px;
+      }
+      .pos4 {
+        position: absolute;
+        border: 2px solid yellow;
+        top: 10px;
+        left: 40px;
+      }
+      .pos5 {
+        position: relative;
+        border: 2px solid orange;
+        height: 60px;
+      }
+      .pos5a {
+        position: absolute;
+        border: 2px solid gold;
+        bottom: 10px;
+        right: 0;
+      }
+      .pos6 {
+        position: relative;
+        border: 2px solid black;
+        height: 60px;
+      }
+      .pos6a {
+        position: absolute;
+        border: 2px solid red;
+        bottom: 10px;
+        right: 50px;
+      }
+    </style>
+  </head>
+  <body style="height: 900px;">
+    <h1>these is a main header</h1> 
+    <div class="pos1">Static</div>     
+    <br>
+    <div class="pos2">
+        Relative1
+        <div class="pos2a">Relative2</div>
+    </div>     
+    <br>
+    <div class="pos3">
+        Fixed
+    </div>     
+    <br>
+    <div class="pos4"> Absolute </div>
+    <br>
+    <div class="pos5">
+      Relative
+      <div class="pos5a"> Absolute </div>
+    </div>
+  
+    <br>
+    <div class="pos6">
+      Relative
+      <div style="border: 2px solid pink; height: 100px;">
+        just another div
+        <div class="pos6a"> Absolute </div>
+      </div>
+    </div>
+    <br>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+    <p> The quick brown fox jumped over lazy dog  </p>
+  </body>
+</html>
