@@ -1,0 +1,34 @@
+<!Doctype html>
+<html>
+<head>
+  <style>
+    .hide {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 1300ms;
+    }
+    .show .hide {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <a href="#" id="abc">ABC</a>
+  <div class="hide">
+    <div>Hello</div>
+    <div>World</div>
+  </div>
+  <script>
+    var abc = document.querySelector('#abc');
+    abc.onclick = function() {
+      var body = document.body;
+      if(body.classList.contains('show')) {
+        body.classList.remove('show');
+      } else {
+        body.classList.add('show');
+      }
+    };
+  </script>
+</body>
+</html>
