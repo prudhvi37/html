@@ -1,0 +1,23 @@
+<!Doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+      <a id="lnk_yahoo" href="http://www.yahoo.com">hello</a>
+      <a id="lnk_yahoo1" href="http://www.yahoo.com">hello</a>
+    <script>
+        var lnkYahoo = document.getElementById('lnk_yahoo');
+        var lnkYahoo1 = document.querySelector('#lnk_yahoo');
+        lnkYahoo.addEventListener('click', function(event) {
+          event.preventDefault();
+          alert('clicked');
+          console.log(event);
+          console.log(this);
+        });
+        lnkYahoo.removeEventListener('click');
+    </script>
+  </body>
+</html>
+
+// getElementById, getElementsByTagName, getElementsByClassName
+// querySelector('#id'), querySelector('.class')

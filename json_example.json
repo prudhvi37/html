@@ -1,0 +1,7 @@
+var json_ex = { z: 10, x: 20, y: { a: [40,50]} };
+var obj = { x: 10 };
+var arr = [10, 20];
+
+
+var abc = JSON.stringify(json_ex); // converts json abject into a string
+var xyz = JSON.parse(abc); // converts json string into json object
