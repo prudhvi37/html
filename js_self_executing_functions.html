@@ -1,0 +1,44 @@
+<!Doctype html>
+<html>
+<body>
+</body>
+<script>
+  // should call doSomething to execute this function
+  function doSomething() {
+    var a = 20;
+    alert('do something');
+    hello();
+  }
+//  alert(a);
+
+  // self executes
+  (function () {
+    var hello = function () {
+      alert(b+d);
+    }
+    var b = 20;
+    var d = 40;
+    alert('self execute');
+    window.hello = hello;
+  })();
+//  alert(b);
+  hello();
+  (function () {
+    var c = 230;
+    alert('self execute1');
+    hello();
+    window.c = c;
+  })();
+  doSomething();
+
+
+
+// variable scope in self executing functions
+    var abc = '000';
+    (function(w,d, xxx) {
+      console.log(abc);
+    })(window,document, abc);
+    abc = '123';
+    console.log(abc);
+</script>
+</html>

@@ -1,0 +1,143 @@
+<!Doctype html>
+<html>
+  <head>
+    <style>
+      .hidden, .hidden1, .hidden2, .hidden3, .hidden4 {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+      <h2>Example for inline js </h2>
+      <div> 
+        <div>
+          <span>the quick brown fox jumped over the lazy dog</span>
+          <a class="show_hide" onclick='doSomething()' href="#">More...</a>
+        </div>
+        <div class="hidden">This a sentence where all 26 alphabets are present.</div>
+      </div>
+
+
+
+      <h2>Example for function expression js </h2>
+      <div> 
+        <div>
+          <span>the quick brown fox jumped over the lazy dog</span>
+          <a class="show_hide1" href="#">More...</a>
+        </div>
+        <div class="hidden1">This a sentence where all 26 alphabets are present.</div>
+      </div>
+
+
+
+      <h2>Example for addEventListener/attachEvent </h2>
+      <div> 
+        <div>
+          <span>the quick brown fox jumped over the lazy dog</span>
+          <a class="show_hide2" href="#">More...</a>
+        </div>
+        <div class="hidden2">This a sentence where all 26 alphabets are present.</div>
+      </div>
+
+
+
+
+      <h2>Example for show hide in self executing functions</h2>
+      <div> 
+        <div>
+          <span>the quick brown fox jumped over the lazy dog</span>
+          <a class="show_hide3" href="#">More...</a>
+        </div>
+        <div class="hidden3">This is a sentence where all 26 alphabets are present.</div>
+      </div>
+
+
+
+
+      <h2>Example for show hide using classes</h2>
+      <div> 
+        <div>
+          <span>the quick brown fox jumped over the lazy dog</span>
+          <a class="show_hide4" href="#">More...</a>
+        </div>
+        <div class="hidden4">This is a sentence where all 26 alphabets are present.</div>
+      </div>
+  </body>
+  <script>
+
+    // example for inline js
+    function doSomething() {
+      var hiddenEl = document.getElementsByClassName('hidden');
+      hiddenEl[0].style.display = 'block';
+    }
+
+    // example for func expression
+    var showHide1El = document.getElementsByClassName('show_hide1');
+    showHide1El[0].onclick = function doSomething() {
+      var hidden1El = document.getElementsByClassName('hidden1');
+      hidden1El[0].style.display = 'block';
+    };
+
+    // example for addEventListeners
+    var showHide2El = document.getElementsByClassName('show_hide2')[0];
+    showHide2El.addEventListener('click', function() {
+      var hidden2El = document.getElementsByClassName('hidden2')[0];
+      hidden2El.style.display = 'block';
+    });
+
+
+
+
+
+    // self executes
+    (function(w,d) {
+      
+      function util() {
+        this._init();
+      }
+
+      util.prototype = {
+        _init: function() {
+          this.moreEl = d.querySelector('.show_hide3');
+          this.hiddenEl = d.querySelector('.hidden3');
+          this._bindHandlers();
+        },
+        _bindHandlers: function() {
+          this.moreEl.addEventListener('click', this.showHide.bind(this), false);
+        },
+        showHide: function() {
+          var display = this.hiddenEl.style.display;
+          if(display === 'block') {
+            this.hiddenEl.style.display = 'none';
+          } else {
+            this.hiddenEl.style.display = 'block';
+          }
+        }
+      }
+
+      window.util = new util;
+    })(window,document);
+
+    // using classes
+    class util1 {
+      constructor() {
+        this.moreEl = document.querySelector('.show_hide4');
+        this.hiddenEl = document.querySelector('.hidden4');
+        this._bindHandlers();
+      }
+      _bindHandlers() {
+        this.moreEl.addEventListener('click', this.showHide.bind(this), false);
+      }
+      showHide() {
+        var display = this.hiddenEl.style.display;
+        if(display === 'block') {
+          this.hiddenEl.style.display = 'none';
+        } else {
+          this.hiddenEl.style.display = 'block';
+        }
+      }
+    }
+    var utilObj = new util1();
+  </script>
+  <!--script src='nav.js'></script-->
+</html>
