@@ -1,0 +1,57 @@
+<!Doctype html>
+<html>
+  <head>
+    <style>
+      .item1 {
+        border: 1px solid black;
+      }
+      .container1 {
+        display: flex;
+        flex-direction: row;
+        background: green;
+        justify-content: space-around;
+        align-items: center;
+        height: 100px;
+      }
+      .container2 {
+        display: flex;
+        flex-direction: column;
+        background: orange;
+      }
+      .container3 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        background: yellow;
+      }
+      .container3 .item1 {
+        padding: 20%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container1">
+      <div class="item1" style="flex-grow: 1;">A</div>
+      <div class="item1" style="order: 1;flex-grow: 2;">B</div>
+      <div class="item1" style="flex: 2">C</div>
+      <div class="item1" style="flex-basis: 32px;">D</div>
+    </div>
+
+
+    <div class="container2">
+      <div class="item1">A</div>
+      <div class="item1">B</div>
+      <div class="item1">C</div>
+      <div class="item1">D</div>
+    </div>
+
+
+
+    <div class="container3">
+      <div class="item1">A</div>
+      <div class="item1">B</div>
+      <div class="item1">C</div>
+      <div class="item1">D</div>
+    </div>
+  </body>
+</html>
