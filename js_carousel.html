@@ -1,0 +1,107 @@
+<!Doctype html>
+<html>
+  <head>
+    <style>
+      .container {
+        position: relative;
+      }
+      .image {
+        width: 400px;
+        position: absolute;
+        top: 50px;
+        z-index: 1;
+        transition: all 500ms;
+      }
+      .dots {
+        padding: 1px 10px;
+        background: #868484;
+        margin: 20px;
+        border-radius: 50%;
+      }
+      .image:first-child {
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img class="image" src="img/img1.jpg">
+      <img class="image" src="img/img2.jpg">
+      <img class="image" src="img/img3.jpg">
+      <img class="image" src="img/img4.jpg">
+    </div>
+    <div>
+      <label for="radio_btn1" class="dots"></label>
+      <label for="radio_btn2" class="dots"></label>
+      <label for="radio_btn3" class="dots"></label>
+      <label for="radio_btn4" class="dots"></label>
+    </div>
+    <div>
+      <button id="prev"><</button>
+      <button id="next">></button>
+    </div>
+    <script>
+      (function(w,d){
+        function carousel() {
+          this._init();
+        }
+        carousel.prototype = {
+          _init: function() {
+            this.dots = d.querySelectorAll('.dots');
+            this.images = d.querySelectorAll('.image');
+            this.prev = d.querySelector('#prev');
+            this.next = d.querySelector('#next');
+            this._bindHandlers();
+          },
+          _bindHandlers: function() {
+            var len = this.dots.length;
+            for(var i = 0; i < len; i++) {
+              this.dots[i].addEventListener('click', this.showImage.bind(this, i), false);
+            }
+            this.prev.addEventListener('click', this.doSomething.bind(this, 'prev'), false);
+            this.next.addEventListener('click', this.doSomething.bind(this, 'next'), false);
+          },
+          showImage: function(i) {
+            var len = this.images.length;
+            for(var j = 0; j < len; j++) {
+              if (i == j) {
+                this.images[j].style.zIndex = 10;
+              } else {
+                this.images[j].style.zIndex = 1;
+              }
+            } 
+          },
+          doSomething: function(direction) {
+            var len = this.images.length;
+            var currentImg;
+            for(var j = 0; j < len; j++) {
+              var zIndex = w.getComputedStyle(this.images[j]).zIndex;
+              if (zIndex == 10) {
+                currentImg = this.images[j];
+              }
+            } 
+            for(var j = 0; j < len; j++) {
+              this.images[j].style.zIndex = 1;
+            } 
+            if(direction === 'next') {
+              if(currentImg && currentImg.nextElementSibling) {
+                currentImg.nextElementSibling.style.zIndex = 10;
+              } else {
+                this.images[0].style.zIndex = 10;
+              }
+            } else if(direction === 'prev') {
+              if(currentImg && currentImg.previousElementSibling) {
+                currentImg.previousElementSibling.style.zIndex = 10;
+              } else {
+                this.images[len-1].style.zIndex = 10;
+              }
+
+            }
+          }
+
+        }
+        window.carousel = new carousel;
+      })(window, document);
+    </script>
+  </body>
+</html>
