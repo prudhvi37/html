@@ -1,0 +1,106 @@
+<!Doctype html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Helvetica;
+      }
+      .image {
+        display: inline-block;
+      }
+      .author {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div>
+        <input type="text" class="search-inpt">
+        <input type="button" class="submit-btn" value="search">
+       </div>
+      <h2 class="title"></h2>
+      <div class="images1">
+      </div>
+    </div>
+    <script>
+      (function(w,d) {
+        function flickr() {
+          this._init();
+        }
+        flickr.prototype = {
+          _init: function() {
+            this.searchInpt = d.querySelector('.search-inpt');
+            this.submitBtn = d.querySelector('.submit-btn');
+            this._bindHandlers();
+          },
+          _bindHandlers: function() {
+            this.searchInpt.addEventListener('keyup', this.callGossipApi.bind(this), false);
+            this.submitBtn.addEventListener('click', this.callApi.bind(this), false);
+          },
+          callGossipApi: function() {
+            var searchVal = this.searchInpt.value;
+            var apiGossipUrl = "https://in.search.yahoo.com/sugg/gossip/gossip-in-sayt?output=yjsonp&l=1&command=" + searchVal + "&nresults=10";
+            var bodyEl = d.body;
+            var scriptEl = d.createElement('script');
+            scriptEl.id = "flickrurl";
+            scriptEl.src = apiGossipUrl;
+            bodyEl.append(scriptEl);
+          },
+          callApi: function() {
+            var searchVal = this.searchInpt.value;
+            var apiUrl = "http://www.flickr.com/services/feeds/photos_public.gne?tags=" + searchVal + "&format=json&jsoncallback=abc";
+            var bodyEl = d.body;
+            var scriptEl = d.createElement('script');
+            scriptEl.id = "flickrurl";
+            scriptEl.src = apiUrl;
+            bodyEl.append(scriptEl);
+          }
+        }
+        window.flickr = new flickr();
+      })(window, document);
+
+      function yasearch(data) {
+        console.log(data);
+      }
+
+      function abc(data) {
+        var images1El = document.querySelector('.images1');
+
+        images1El.innerHTML = '';
+        document.querySelector('.title').innerHTML = data.title;
+        var items = data.items;
+        for(item of items) {
+          // image wrapper
+          var imageEl = document.createElement('div');
+          imageEl.classList.add('image');
+          // author
+          var authorEl = document.createElement('div');
+          var regex = /\(([^)]+)\)/;
+          var auth = regex.exec(item.author);
+          
+          authorEl.classList.add('author');
+          authorEl.innerHTML = auth[1].replace(/"/g, '');
+          // date
+          var dateEl = document.createElement('div');
+          dateEl.classList.add('date-taken');
+          dateEl.innerHTML = item.date_taken;
+          // img - media
+          var mediaEl = document.createElement('img');
+          mediaEl.style.width="200px";
+          mediaEl.style.height="160px";
+          mediaEl.src = item.media.m;
+
+          // append children to image wrapper
+          imageEl.appendChild(authorEl);
+          imageEl.appendChild(dateEl);
+          imageEl.appendChild(mediaEl);
+
+          // Images wrapper - append image wrapper to parent
+          images1El.appendChild(imageEl);
+        }
+      }
+    </script>
+  </body>
+</html>
+
