@@ -1,0 +1,67 @@
+<!Doctype html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Helvetica;
+      }
+      .image {
+        display: inline-block;
+      }
+      .author {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h2 class="title"></h2>
+      <div class="images1">
+      </div>
+    </div>
+    <script>
+      function abc(data) {
+        console.log(data);
+        console.log(data.title);
+        document.querySelector('.title').innerHTML = data.title;
+        var items = data.items;
+        for(item of items) {
+          console.log(item.author);
+          console.log(item.date_taken);
+          console.log(item.link);
+          console.log(item.media.m);
+          // image wrapper
+          var imageEl = document.createElement('div');
+          imageEl.classList.add('image');
+          // author
+          var authorEl = document.createElement('div');
+          var regex = /\(([^)]+)\)/;
+          var auth = regex.exec(item.author);
+          
+          authorEl.classList.add('author');
+          authorEl.innerHTML = auth[1].replace(/"/g, '');
+          // date
+          var dateEl = document.createElement('div');
+          dateEl.classList.add('date-taken');
+          dateEl.innerHTML = item.date_taken;
+          // img - media
+          var mediaEl = document.createElement('img');
+          mediaEl.style.width="200px";
+          mediaEl.style.height="160px";
+          mediaEl.src = item.media.m;
+
+          // append children to image wrapper
+          imageEl.appendChild(authorEl);
+          imageEl.appendChild(dateEl);
+          imageEl.appendChild(mediaEl);
+
+          // Images wrapper - append image wrapper to parent
+          var images1El = document.querySelector('.images1');
+          images1El.appendChild(imageEl);
+        }
+      }
+    </script>
+    <script src='http://www.flickr.com/services/feeds/photos_public.gne?tags=soccer&format=json&jsoncallback=abc'> </script>
+  </body>
+</html>
+
