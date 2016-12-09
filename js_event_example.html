@@ -1,0 +1,21 @@
+<!Doctype html>
+<html>
+  <head>
+    <style>
+      #inner {
+        padding: 20px;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+      <h2>Events</h2>
+      <div id="inner">Events
+      </div>
+    <script>
+      document.getElementById('inner').addEventListener('click', function() {
+        console.log(event);
+      }, false);
+    </script>
+  </body>
+</html>
