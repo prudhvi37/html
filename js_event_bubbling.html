@@ -1,0 +1,83 @@
+<!Doctype html>
+<html>
+  <head>
+    <style>
+      #outer3,
+      #outer2,
+      #outer1,
+      #outer {
+        padding: 20px;
+        background: green;
+      }
+      #inner3,
+      #inner2,
+      #inner1,
+      #inner {
+        padding: 20px;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h2> Event Bubbling & Event Capture </h2>
+    <div id="outer">Outer
+      <div id="inner">Inner .... this is inner element. By the clicking on this text, the event bubbles to outer element as we do not have event handler on inner. We have event handler on outer.
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h2> Event Capturing</h2>
+    <div id="outer1">Outer1
+      <div id="inner1">Inner1 .... Example for event Capture. addEventListener(eventType, listener, useCapture). when use Capture is true, outer elements listener gets executed first and then inner elements listener. 
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h2> Event Bubbling</h2>
+    <div id="outer2">Outer2
+      <div id="inner2">Inner2 .... Example for event bubbling. addEventListener(eventType, listener, useCapture). when use Capture is false, inner elements listener gets executed first and then outer elements listener. 
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h2> Stop Propagation</h2>
+    <div id="outer3">Outer3
+      <div id="inner3">Inner3 .... Example for event bubbling. addEventListener(eventType, listener, useCapture). when use Capture is false, inner elements listener gets executed first and then outer elements listener. 
+      </div>
+    </div>
+    <script>
+      document.getElementById('outer').addEventListener('click', function() {
+        alert('outer');
+      });
+
+      // Event Capturing
+      document.getElementById('inner1').addEventListener('click', function() {
+        alert('inner1');
+      }, true);
+      document.getElementById('outer1').addEventListener('click', function() {
+        alert('outer1');
+      }, true);
+
+      // Event Bubbling
+      document.getElementById('inner2').addEventListener('click', function() {
+        alert('inner2');
+      }, false);
+      document.getElementById('outer2').addEventListener('click', function() {
+        alert('outer2');
+      }, false);
+
+      // Stop Propagation
+      document.getElementById('inner3').addEventListener('click', function() {
+        event.stopPropagation();
+        alert('inner3');
+      }, false);
+      document.getElementById('outer3').addEventListener('click', function() {
+        alert('outer3');
+      }, false);
+
+    </script>
+  </body>
+</html>
